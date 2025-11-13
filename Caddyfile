@@ -1,0 +1,9 @@
+{
+  email artcodeneuro@yandex.ru
+  acme_ca https://acme-v02.api.letsencrypt.org/directory
+}
+
+acnai.ru, www.acnai.ru {
+  encode gzip
+  reverse_proxy web:8000
+}
