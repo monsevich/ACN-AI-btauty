@@ -7,3 +7,14 @@ acnai.ru, www.acnai.ru {
   tls /etc/caddy/certs/acnai-fullchain.pem /etc/caddy/certs/acnai.key
   reverse_proxy web:8000
 }
+acnai.ru, www.acnai.ru {
+    tls /etc/caddy/certs/acnai.fullchain.pem /etc/caddy/certs/acnai.key
+
+    encode zstd gzip
+
+    # ВАРИАНТ А: приложение в другом сервисе compose (например, "app:8000")
+    # reverse_proxy app:8000
+
+    # ВАРИАНТ Б: приложение слушает на хосте :8000 (как у вас видно из ss)
+    reverse_proxy host.docker.internal:8000
+}
